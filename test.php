@@ -1,4 +1,5 @@
 <?php
 
-echo "hi";
+$a = time();
+var_dump($a);
 ?>
