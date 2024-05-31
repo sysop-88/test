@@ -2,7 +2,6 @@
 
 $a = time();
 var_dump($a);
-phpinfo();
 
 /**
  * Test class
@@ -25,15 +24,17 @@ final class Test {
     }
     final static public function test1()
     {
+        
         $UserAgent = (object) array(
             "UserAgent" => $_SERVER["HTTP_USER_AGENT"],
             "IP" => self::get_real_ip_address(),
             "Timestamp" => time()
         );
-        var_dump( "File:".__FILE__, "Line:". __LINE__, $UserAgent);
         return $UserAgent;
     }
-    final static private function get_real_ip_address()
+/*     var_dump( "File:".__FILE__, "Line:". __LINE__, "hi");
+ */  
+ADD  final static private function get_real_ip_address()
     {
         // Check if the IP address is passed through a proxy
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -53,13 +54,7 @@ final class Test {
             '192.168.0.0/16'
         );
 
-        foreach ($private_ip_ranges as $range) {
-            if (self::ip_in_range($ip, $range)) {
-                // If the IP address is in a private range, try to get the public IP address
-                $ip = self::get_real_ip_address();
-                break;
-            }
-        }
+   
 
         return $ip;
     }
