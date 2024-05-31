@@ -32,9 +32,10 @@ final class Test {
         );
         return $UserAgent;
     }
-/*     var_dump( "File:".__FILE__, "Line:". __LINE__, "hi");
- */  
-ADD  final static private function get_real_ip_address()
+    
+//     var_dump( "File:".__FILE__, "Line:". __LINE__, "hi");
+ 
+  final static private function get_real_ip_address()
     {
         // Check if the IP address is passed through a proxy
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
