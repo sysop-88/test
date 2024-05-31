@@ -53,9 +53,9 @@ final class Test {
         );
 
         foreach ($private_ip_ranges as $range) {
-            if (ip_in_range($ip, $range)) {
+            if (self::ip_in_range($ip, $range)) {
                 // If the IP address is in a private range, try to get the public IP address
-                $ip = get_public_ip_address();
+                $ip = self::get_real_ip_address();
                 break;
             }
         }
