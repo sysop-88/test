@@ -32,7 +32,7 @@ final class Test {
         );
         return $UserAgent;
     }
-    
+
 //     var_dump( "File:".__FILE__, "Line:". __LINE__, "hi");
  
   final static private function get_real_ip_address()
@@ -104,5 +104,92 @@ $UserAgent = $Test::test1();
 
 var_dump($UserAgent);
 
+class FileOperations
+{
+    private static function readFile($filename)
+    {
+        $contents = file_get_contents($filename);
+        return $contents;
+    }
+
+    private static function writeFile($filename, $data)
+    {
+        $result = file_put_contents($filename, $data);
+        return $result;
+    }
+
+    private static function searchFile($filename, $searchString)
+    {
+        $contents = self::readFile($filename);
+        if (strpos($contents, $searchString) !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static function deleteFile($filename)
+    {
+        if (file_exists($filename)) {
+            $result = unlink($filename);
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public static function readFileContents($filename)
+    {
+        return self::readFile($filename);
+    }
+
+    public static function writeFileContents($filename, $data)
+    {
+        return self::writeFile($filename, $data);
+    }
+
+    public static function searchFileForString($filename, $searchString)
+    {
+        return self::searchFile($filename, $searchString);
+    }
+
+    public static function deleteFileFromDisk($filename)
+    {
+        return self::deleteFile($filename);
+    }
+}
+
+// Example usage
+$file = 'example.txt';
+
+// Read file
+$fileContents = FileOperations::readFileContents($file);
+echo "File contents: " . $fileContents . "\n";
+
+// Write to file
+$data = "This is some new data.\n";
+$writeResult = FileOperations::writeFileContents($file, $data);
+if ($writeResult !== false) {
+    echo "Data written to file successfully.\n";
+} else {
+    echo "Error writing to file.\n";
+}
+
+// Search for a string in the file
+$searchString = "some";
+$searchResult = FileOperations::searchFileForString($file, $searchString);
+if ($searchResult) {
+    echo "String found in file.\n";
+} else {
+    echo "String not found in file.\n";
+}
+
+// Delete the file
+$deleteResult = FileOperations::deleteFileFromDisk($file);
+if ($deleteResult) {
+    echo "File deleted successfully.\n";
+} else {
+    echo "Error deleting file.\n";
+}
 
 ?>
