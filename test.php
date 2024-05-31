@@ -30,6 +30,7 @@ final class Test {
             "IP" => self::get_real_ip_address(),
             "Timestamp" => time()
         );
+        var_dump( "File:".__FILE__, "Line:". __LINE__, $UserAgent);
         return $UserAgent;
     }
     final static private function get_real_ip_address()
